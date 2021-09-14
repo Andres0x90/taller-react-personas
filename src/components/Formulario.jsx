@@ -28,20 +28,20 @@ const Formulario = (props) =>
 
                 <form className="col-4" onSubmit={handleSubmit(onSubmit)} >
                 <div className = "form-group" >
-               <label className="form-label">Nompre Persona</label>
+               <label className="form-label">Nombre Persona</label>
                <input type="text" className="form-control" {...register("nombre", 
                {
                     required: true
                })}/>
-               <div>{errors.nombre?.type === 'required' && 'El campo nombre es obligatorio'}</div>
+               <div >{errors.nombre?.type === 'required' && 'El campo nombre es obligatorio'}</div>
            </div>
            <div>
                <label className="form-label">Edad</label>
-                <input type="number" className="form-control" {...register("edad", 
+                <input type="number" min="0" className="form-control" {...register("edad", 
                {
                     required: true
                })}/>
-                <div>{errors.edad?.type === 'required' && 'El campo edad es obligatorio'}</div>
+                <div >{errors.edad?.type === 'required' && 'El campo edad es obligatorio'}</div>
            </div>
           <div>
                 <label className="form-label">Seleciona la profesion</label>
