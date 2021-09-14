@@ -1,8 +1,9 @@
 import React, {useState} from 'react';
 import Formulario from './components/Formulario';
+import Tabla from './components/Tabla';
 
 function App() {
-  const [persona, setPersona] = useState([{
+  const [personas, setPersonas] = useState([{
     nombre: "",
     edad: "",
     categoriaEdad: "",
@@ -14,7 +15,7 @@ function App() {
     {
         addCategoriaEdad(data);
         addValores(data);   
-        setPersona([...persona, data]);
+        setPersonas([...personas, data]);
     }
 
     const addCategoriaEdad = (data) =>
@@ -42,6 +43,7 @@ function App() {
   return (
     <div className="App container-fluid">
         <Formulario addPersona={addPersona}  />
+        <Tabla personas={personas} />
     </div>
   );
 }
