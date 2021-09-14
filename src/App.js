@@ -1,23 +1,47 @@
-import logo from './logo.svg';
-import './App.css';
+import React, {useState} from 'react';
+import Formulario from './components/Formulario';
 
 function App() {
+  const [persona, setPersona] = useState([{
+    nombre: "",
+    edad: "",
+    categoriaEdad: "",
+    ocupacion: "",
+    valores: ""
+}]);
+
+    const addPersona = (data) =>
+    {
+        addCategoriaEdad(data);
+        addValores(data);   
+        setPersona([...persona, data]);
+    }
+
+    const addCategoriaEdad = (data) =>
+    {
+        if (parseInt(data.edad) >= 0 && parseInt(data.edad) <= 12)
+          data.categoriaEdad = "Niño";
+        else if (parseInt(data.edad) >= 13 && parseInt(data.edad) <= 30)
+          data.categoriaEdad = "Joven";
+        else if (parseInt(data.edad) >= 13 && parseInt(data.edad) <= 50)
+          data.categoriaEdad = "Adulto";
+        else
+          data.categoriaEdad = "Mayor";
+    }
+
+    const addValores = (data) =>
+    {
+      if (data.ocupacion === "Estudiante")
+        data.valores = ["el compromiso", "el esfuerzo", "el respeto"];
+      else if (data.ocupacion === "Profesional")
+        data.valores = ["la proactividad", "la iniciativa", "la actitud"];
+      else
+        data.valores = ["la honestidad", "la lealtad", "la integridad"];
+    }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="App container-fluid">
+        <Formulario addPersona={addPersona}  />
     </div>
   );
 }
